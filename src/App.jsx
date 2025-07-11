@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import DonationForm from "./components/DonationFom";
+
+const initialDonations = [
+  { id: '1', donorName: 'Alice Johnson', type: "Money", quantity: 100, date: '2024-07-15' },
+  { id: '2', donorName: 'Bob Williams', type: "Food", quantity: 20, date: '2024-07-14' },
+  { id: '3', donorName: 'Charlie Brown', type: "Clothing", quantity: 50, date: '2024-07-13' },
+  { id: '4', donorName: 'Diana Prince', type: "Clothing", quantity: 15, date: '2024-07-12' },
+  { id: '5', donorName: 'Alice Johnson', type: "Food", quantity: 10, date: '2024-07-11' },
+];
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState("");
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+  };
+
+  // will use the native Form handling introduced in react 19
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <main>
+      <DonationForm
+        onSubmit={(data) => {
+          console.log("Form submitted with data:", data);
+          // Here you would typically send the data to your server or update state
+        }}
+        onClose={() => console.log("Form closed")}
+        initialData={null} // Pass null for a new donation, or an object to edit
+      />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
