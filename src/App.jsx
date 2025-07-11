@@ -13,8 +13,11 @@ const initialDonations = [
 
 
 function App() {
+  const donationTypes = ["Money", "Food", "Clothing"];
   const [donationsList, setDonationsList] = useState(initialDonations);
   const [editingDonation, setEditingDonation] = useState(null);
+  const [filter, setFilter] = useState("");
+
 
   // Function to handle editing a donation
   // This sets the donation to be edited in the form, allowing the user to modify it
@@ -63,8 +66,27 @@ function App() {
         } // Pass null to close the form without saving
         initialData={editingDonation || null} // Pass null for a new donation, or an object to edit
       />
+      <section classname="filter-section">
+        <label htmlFor="filter">FDonation List
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="filter-select"
+        >
+          <option value="">All</option>
+          {
+            donationTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))
+          }
+        </select>
+        </label>
+      </section>
       <div className="donation-list">
-        {donationsList.map((donation) => (
+        {donationsList.filter((donation) => (filter ? donation.type === filter : true)  ).map((donation) => (
           <div key={donation.id} className="donation-item">
             <h3>{donation.donorName}</h3>
             <p>Type: {donation.type}</p>
