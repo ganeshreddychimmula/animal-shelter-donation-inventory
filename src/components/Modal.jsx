@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "../App.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
+    // Effect to handle Escape key press for closing the modal.
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [onClose]);
+
+  // If the modal is not open, return null to avoid rendering.
   if (!isOpen) return null;
 
   return (
