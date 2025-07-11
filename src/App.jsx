@@ -3,47 +3,10 @@ import "./App.css";
 import Header from "./components/Header";
 import DonationForm from "./components/DonationFom";
 import Modal from "./components/Modal";
+import { initialDonations, donationTypes } from "./data";
 
-const initialDonations = [
-  {
-    id: "1",
-    donorName: "Alice Johnson",
-    type: "Money",
-    quantity: 100,
-    date: "2024-07-15",
-  },
-  {
-    id: "2",
-    donorName: "Bob Williams",
-    type: "Food",
-    quantity: 20,
-    date: "2024-07-14",
-  },
-  {
-    id: "3",
-    donorName: "Charlie Brown",
-    type: "Clothing",
-    quantity: 50,
-    date: "2024-07-13",
-  },
-  {
-    id: "4",
-    donorName: "Diana Prince",
-    type: "Clothing",
-    quantity: 15,
-    date: "2024-07-12",
-  },
-  {
-    id: "5",
-    donorName: "Alice Johnson",
-    type: "Food",
-    quantity: 10,
-    date: "2024-07-11",
-  },
-];
 
 function App() {
-  const donationTypes = ["Money", "Food", "Clothing"];
   const [donationsList, setDonationsList] = useState(initialDonations);
   const [editingDonation, setEditingDonation] = useState(null);
   const [filter, setFilter] = useState("");
@@ -96,7 +59,13 @@ function App() {
     handleCloseModal(); // Close the modal after submission
   };
 
-  const donationSummaryElementByFilter = useMemo(() => {
+  const donationSummaryElements = useMemo(() => {
+    const quantifier = {
+      Money: " ($)",
+      Food: " (kg)",
+      Clothing: " (items)",
+    } 
+    
     return (
       <p>
           Total {filter} Donations:{" "}
@@ -105,9 +74,34 @@ function App() {
               total + (donation.type === filter ? donation.quantity : 0)
             );
           }, 0)}{" "}
-          items
+          {filter ? `${quantifier[filter]}` : ""}
         </p>
     )
+  }, [donationsList, filter]);
+
+  const donationLListElements = useMemo(() => {
+    return (<div className="donation-list">
+          {donationsList
+            .filter((donation) => (filter ? donation.type === filter : true))
+            .map((donation) => (
+              <div key={donation.id} className="donation-item">
+                <h3>{donation.donorName}</h3>
+                <p>Type: {donation.type}</p>
+                <p>Quantity: {donation.quantity}</p>
+                <p>Date: {new Date(donation.date).toLocaleDateString()}</p>
+                <button
+                  onClick={() => {
+                    editDonation(donation);
+                  }}
+                >
+                  Edit
+                </button>
+                <button onClick={() => deleteDonation(donation.id)}>
+                  Delete
+                </button>
+              </div>
+            ))}
+        </div>) 
   }, [donationsList, filter]);
 
   // will use the native Form handling introduced in react 19
@@ -134,7 +128,7 @@ function App() {
               );
             }, 0)}
           </p>
-          {donationSummaryElementByFilter}
+          {filter && donationSummaryElements}
         </section>
         <section className="filter-section">
           <label htmlFor="filter">
@@ -162,28 +156,7 @@ function App() {
             Add New Donation
           </button>
         </section>
-        <div className="donation-list">
-          {donationsList
-            .filter((donation) => (filter ? donation.type === filter : true))
-            .map((donation) => (
-              <div key={donation.id} className="donation-item">
-                <h3>{donation.donorName}</h3>
-                <p>Type: {donation.type}</p>
-                <p>Quantity: {donation.quantity}</p>
-                <p>Date: {new Date(donation.date).toLocaleDateString()}</p>
-                <button
-                  onClick={() => {
-                    editDonation(donation);
-                  }}
-                >
-                  Edit
-                </button>
-                <button onClick={() => deleteDonation(donation.id)}>
-                  Delete
-                </button>
-              </div>
-            ))}
-        </div>
+        {donationLListElements}
       </main>
     </>
   );

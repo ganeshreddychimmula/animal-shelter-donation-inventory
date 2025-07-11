@@ -1,18 +1,16 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from "react";
+import { donationTypes, quantityLabels } from "/src/data.js";
 
 const DonationForm = ({ onSubmit, onClose, initialData }) => {
   // State for form fields. If initialData is provided, use it to pre-fill the form for editing.
-  const donationTypes = ["Money", "Food", "Clothing"];
-  const quantityLabels = {
-    Money: "Amount ($)",
-    Food: "Quantity (kg)",
-    Clothing: "Quantity (items)",
-    };
-  const [donorName, setDonorName] = useState(initialData?.donorName || '');
+
+  const [donorName, setDonorName] = useState(initialData?.donorName || "");
   const [type, setType] = useState(initialData?.type || "Money");
   const [quantity, setQuantity] = useState(initialData?.quantity || 0);
-  const [date, setDate] = useState(initialData?.date || new Date().toISOString().split('T')[0]);
-  const [error, setError] = useState('');
+  const [date, setDate] = useState(
+    initialData?.date || new Date().toISOString().split("T")[0]
+  );
+  const [error, setError] = useState("");
 
   // Effect to reset form state when the donation being edited changes.
   useEffect(() => {
@@ -21,14 +19,14 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
       setType(initialData.type);
       setQuantity(initialData.quantity);
       setDate(initialData.date);
-      setError('');
+      setError("");
     } else {
       // Reset to default for a new donation
-      setDonorName('');
-      setType('Money');
+      setDonorName("");
+      setType("Money");
       setQuantity(0);
-      setDate(new Date().toISOString().split('T')[0]);
-      setError('');
+      setDate(new Date().toISOString().split("T")[0]);
+      setError("");
     }
   }, [initialData]);
 
@@ -41,7 +39,7 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
   const handleSubmit = (formData) => {
     // Basic validation to ensure required fields are filled and quantity is positive.
     if (!donorName.trim() || quantity <= 0) {
-      setError('Please fill out all fields and enter a positive quantity.');
+      setError("Please fill out all fields and enter a positive quantity.");
       return;
     }
     // Call the onSubmit prop passed from the parent with the form data.
@@ -58,7 +56,9 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
     <form action={handleSubmit} className="form">
       {error && <p className="error-mssg">{error}</p>}
       <div>
-        <label htmlFor="donorName" className="form-label">Donor Name</label>
+        <label htmlFor="donorName" className="form-label">
+          Donor Name
+        </label>
         <input
           type="text"
           id="donorName"
@@ -70,18 +70,26 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
         />
       </div>
       <div>
-        <label htmlFor="type" className="form-label">Donation Type</label>
+        <label htmlFor="type" className="form-label">
+          Donation Type
+        </label>
         <select
           id="type"
           value={type}
           onChange={(e) => setType(e.target.value)}
           className="form-type"
         >
-          {donationTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+          {donationTypes.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
         </select>
       </div>
       <div>
-        <label htmlFor="quantity" className="form-label">{quantityLabels[type]}</label>
+        <label htmlFor="quantity" className="form-label">
+          {quantityLabels[type]}
+        </label>
         <input
           type="number"
           id="quantity"
@@ -94,7 +102,9 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
         />
       </div>
       <div>
-        <label htmlFor="date" className="form-label">Date of Donation</label>
+        <label htmlFor="date" className="form-label">
+          Date of Donation
+        </label>
         <input
           type="date"
           id="date"
@@ -105,11 +115,15 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
         />
       </div>
       <div className="form-actions">
-        <button type="button" onClick={onClose} className="form-cancel-button">Cancel</button>
-        <button type="submit" className="form-submit-button">{initialData ? 'Update' : 'Add'} Donation</button>
+        <button type="button" onClick={onClose} className="form-cancel-button">
+          Cancel
+        </button>
+        <button type="submit" className="form-submit-button">
+          {initialData ? "Update" : "Add"} Donation
+        </button>
       </div>
     </form>
-  );    
+  );
 };
 
 export default DonationForm;
