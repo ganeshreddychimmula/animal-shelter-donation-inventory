@@ -38,6 +38,7 @@ function App() {
 
   const handleSubmit = (donation) => {
     // If editing an existing donation, update it in the list
+    const moneyDonation = donationsList.find(d => d.id === donation.id);
     if (editingDonation) {
       setDonationsList((prevList) =>
         prevList.map((d)=> d.id === donation.id ? donation : d)
@@ -53,6 +54,27 @@ function App() {
     }
   };
 
+  const donationSummaryElementByFilter = () =>{
+    if(!filter) return null;
+    else if(filter === "Money"){
+      return (
+      <p>Total Amount: ${donationsList.reduce((total, donation) => {
+          return total + (donation.type === "Money" ? donation.quantity : 0);
+        }, 0)}</p>
+      )
+    } else if(filter === "Food"){
+      return (
+      <p>Total Food Donations: {donationsList.reduce((total, donation) => {
+          return total + (donation.type === "Food" ? donation.quantity : 0);
+        }, 0)} kg</p>)
+    } else if(filter === "Clothing"){
+      return (
+         <p>Total Clothing Donations: {donationsList.reduce((total, donation) => {
+          return total + (donation.type === "Clothing" ? donation.quantity : 0);
+        }, 0)} items</p>
+      )
+  }}
+
   // will use the native Form handling introduced in react 19
   return (
     <>
@@ -66,6 +88,13 @@ function App() {
         } // Pass null to close the form without saving
         initialData={editingDonation || null} // Pass null for a new donation, or an object to edit
       />
+      <section className="donation-summary">
+        <p>Total Donations: {donationsList.length}</p>
+        <p>Total Money Donations: ${donationsList.reduce((total, donation) => {
+          return total + (donation.type === "Money" ? donation.quantity : 0);
+        }, 0)}</p>
+        {donationSummaryElementByFilter()}
+      </section>
       <section classname="filter-section">
         <label htmlFor="filter">FDonation List
         <select
