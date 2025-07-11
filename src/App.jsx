@@ -14,13 +14,39 @@ const initialDonations = [
 
 function App() {
   const [donationsList, setDonationsList] = useState(initialDonations);
+  const [editingDonation, setEditingDonation] = useState(null);
 
+  // Function to handle editing a donation
+  // This sets the donation to be edited in the form, allowing the user to modify it
+  // When the form is submitted, it will either update the existing donation or add a new
+  // one if no existing donation is being edited.
+  const editDonation = (donation) => {
+    setEditingDonation(donation);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
+  const deleteDonation = (donationId) => {
+    // Filter out the donation with the given ID from the list
+    setDonationsList((prevList) => prevList.filter((d) => d.id !== donationId));
+    // Clear the editing state if the deleted donation was being edited
+    if (editingDonation && editingDonation.id === donationId) {
+      setEditingDonation(null);
+    }
+  };
+
+  const handleSubmit = (donation) => {
+    // If editing an existing donation, update it in the list
+    if (editingDonation) {
+      setDonationsList((prevList) =>
+        prevList.map((d)=> d.id === donation.id ? donation : d)
+      );
+      setEditingDonation(null); // Clear editing state after submission
+    } else {
+      // If adding a new donation, generate a new ID and add it to the list
+      const newDonation = {
+        ...donation,
+        id: (Math.max(...donationsList.map(d => parseInt(d.id))) + 1).toString(), // Generate a new ID
+      };
+      setDonationsList((prevList) => [...prevList, newDonation]);
     }
   };
 
@@ -30,12 +56,12 @@ function App() {
       <Header />
       <main>
       <DonationForm
-        onSubmit={(data) => {
-          console.log("Form submitted with data:", data);
-          // Here you would typically send the data to your server or update state
+        onSubmit={(donation) => {
+          handleSubmit(donation);
         }}
-        onClose={() => console.log("Form closed")}
-        initialData={null} // Pass null for a new donation, or an object to edit
+        onClose={() =>{console.log("Form closed without saving")}
+        } // Pass null to close the form without saving
+        initialData={editingDonation || null} // Pass null for a new donation, or an object to edit
       />
       <div className="donation-list">
         {donationsList.map((donation) => (
@@ -44,8 +70,8 @@ function App() {
             <p>Type: {donation.type}</p>
             <p>Quantity: {donation.quantity}</p>
             <p>Date: {new Date(donation.date).toLocaleDateString()}</p>
-            <button onClick={() => console.log("Edit donation", donation.id)}>Edit</button>
-            <button onClick={() => console.log("Delete donation", donation.id)}>Delete</button>
+            <button onClick={()=>{editDonation(donation)}}>Edit</button>
+            <button onClick={() => deleteDonation(donation.id)}>Delete</button>
           </div>
         ))}
       </div>
