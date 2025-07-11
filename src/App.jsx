@@ -13,7 +13,7 @@ const initialDonations = [
 
 
 function App() {
-  const [name, setName] = useState("");
+  const [donationsList, setDonationsList] = useState(initialDonations);
 
 
   const handleSubmit = (event) => {
@@ -37,6 +37,18 @@ function App() {
         onClose={() => console.log("Form closed")}
         initialData={null} // Pass null for a new donation, or an object to edit
       />
+      <div className="donation-list">
+        {donationsList.map((donation) => (
+          <div key={donation.id} className="donation-item">
+            <h3>{donation.donorName}</h3>
+            <p>Type: {donation.type}</p>
+            <p>Quantity: {donation.quantity}</p>
+            <p>Date: {new Date(donation.date).toLocaleDateString()}</p>
+            <button onClick={() => console.log("Edit donation", donation.id)}>Edit</button>
+            <button onClick={() => console.log("Delete donation", donation.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
       </main>
     </>
   );
