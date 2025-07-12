@@ -64,11 +64,75 @@ You need to have [Node.js](https://nodejs.org/) (which includes npm) installed o
     ```
 2.  Open your browser and navigate to `http://localhost:5173` to see the application running.
 
+## Screenshots
+### Add Donation Records
+![Add Donation records](/src/assets/ss/Add%20Donation.jpeg)
+### Edit Donation
+![Edit Donation](/src/assets/ss/Edit%20Donation.jpeg)
+### Form Quantity error
+![Form Quantity Error](/src/assets/ss/Form%20Quantity%20error.png)
+### Ipad
+![Ipad](/src/assets/ss/iPad.jpeg)
+### Iphone 12 pro
+![Iphone 12 pro](/src/assets/ss/iPhone%2012%20Pro.jpeg)
+### Iphone 6
+![Iphone 6](/src/assets/ss/iPhone6.jpeg)
+### MacBook 20 pro
+![Macbook 20 pro](/src/assets/ss/MacBook%20Pro.jpeg)
+
+
 ## Project Structure
 
 The project follows a standard React application structure, with a clear separation of concerns.
+```mermaid
+graph TD
+    subgraph src
+        A[src] --> B[assets]
+        A --> C[components]
+        A --> D(App.jsx)
+        A --> E(index.jsx)
+    end
 
-/src|-- /assets|   |-- /css|   |   |-- block.css      # Styles for specific components (BEM-like blocks)|   |   |-- global.css     # Global styles, resets, and CSS variables|   |   |-- layouts.css    # Reusable layout primitives (Stack, Box, Cluster)|   |   |-- utilities.css  # Simple utility classes (e.g., text-align)|   |-- /ss|   |   |-- dashboard.jpg      # Screenshot of the main view|   |   |-- modal.jpg          # Screenshot of the modal form|   |   |-- layout-debug.jpg   # Screenshot showing layout debugging|   |   |-- filtered-view.jpg  # Screenshot of a filtered list|   |   |-- empty-state.jpg    # Screenshot of an empty state|   |   |-- form-validation.jpg# Screenshot of form validation|   |   |-- mobile-view.jpg    # Screenshot of mobile layout|   |-- data.js              # Mock data and application constants||-- /components|   |-- DonationForm.jsx     # The form for adding/editing donations|   |-- Header.jsx           # The main application header|   |-- Modal.jsx            # The reusable modal component||-- App.jsx                  # Main application component, handles state and logic|-- index.jsx                # Entry point of the React application
+    subgraph assets
+        direction LR
+        B --> F[css]
+        B --> G[ss]
+        B --> H(data.js)
+    end
+
+    subgraph css
+        direction TB
+        F --> F1(block.css)
+        F --> F2(global.css)
+        F --> F3(layouts.css)
+        F --> F4(utilities.css)
+    end
+
+    subgraph ss
+        direction TB
+        G --> G1(dashboard.jpg)
+        G --> G2(modal.jpg)
+        G --> G3(layout-debug.jpg)
+        G --> G4(filtered-view.jpg)
+        G --> G5(empty-state.jpg)
+        G --> G6(form-validation.jpg)
+        G --> G7(mobile-view.jpg)
+    end
+
+    subgraph components
+        direction TB
+        C --> C1(DonationForm.jsx)
+        C --> C2(Header.jsx)
+        C --> C3(Modal.jsx)
+    end
+
+    style A fill:#023E8A,stroke:#fff,color:#fff
+    style B fill:#0077B6,stroke:#fff,color:#fff
+    style C fill:#0077B6,stroke:#fff,color:#fff
+
+```
+
+
 ### Key Components
 
 -   **`App.jsx`**: The core component that manages the application's state, including the list of donations, filter settings, and modal visibility. It passes data and functions down to child components.
