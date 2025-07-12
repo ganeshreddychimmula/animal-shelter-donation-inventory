@@ -101,7 +101,7 @@ function App() {
             <div className=" l-stack b-donation-item__header">
               <h3>{donation.donorName}</h3>
               <p className="b-donation-item__meta">
-                {donation.type} - {new Date(donation.date).toLocaleDateString()}
+                {donation.type} - {new Date(donation.date).toLocaleDateString('en-US', {timeZone: 'UTC'})}
               </p>
             </div>
             <p className="b-donation-item__quantity">
