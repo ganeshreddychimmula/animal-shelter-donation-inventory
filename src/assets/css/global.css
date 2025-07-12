@@ -1,0 +1,133 @@
+/*
+ * src/assets/css/global.css
+ * Defines global styles, variables, and resets.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
+
+/**Global styles**/
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* @link https://utopia.fyi/type/calculator?c=320,14,1.2,1240,16,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --font--2: clamp(0.6076rem, 0.5964rem + 0.0563vw, 0.64rem);
+  --font--1: clamp(0.7292rem, 0.7045rem + 0.1232vw, 0.8rem);
+  --font-0: clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem);
+  --font-1: clamp(1.05rem, 0.9804rem + 0.3478vw, 1.25rem);
+  --font-2: clamp(1.26rem, 1.1548rem + 0.5261vw, 1.5625rem);
+  --font-3: clamp(1.512rem, 1.3586rem + 0.7672vw, 1.9531rem);
+  --font-4: clamp(1.8144rem, 1.5963rem + 1.0904vw, 2.4414rem);
+  --font-5: clamp(2.1773rem, 1.8731rem + 1.5208vw, 3.0518rem);
+}
+
+/* @link https://utopia.fyi/clamp/calculator?a=320,1240,24—40&p=font */
+
+:root {
+  --font-3-4: clamp(1.5rem, 1.1522rem + 1.7391vw, 2.5rem);
+}
+
+/* @link https://utopia.fyi/space/calculator?c=320,14,1.2,1240,16,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+  --s-3: clamp(0.25rem, 0.25rem + 0vw, 0.25rem);
+  --s-2: clamp(0.4375rem, 0.4158rem + 0.1087vw, 0.5rem);
+  --s-1: clamp(0.6875rem, 0.6658rem + 0.1087vw, 0.75rem);
+  --s0: clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem);
+  --s1: clamp(1.3125rem, 1.2473rem + 0.3261vw, 1.5rem);
+  --s2: clamp(1.75rem, 1.663rem + 0.4348vw, 2rem);
+  --s3: clamp(2.625rem, 2.4946rem + 0.6522vw, 3rem);
+  --s4: clamp(3.5rem, 3.3261rem + 0.8696vw, 4rem);
+  --s5: clamp(5.25rem, 4.9891rem + 1.3043vw, 6rem);
+
+  /* One-up pairs */
+  --s--3-2: clamp(0.25rem, 0.163rem + 0.4348vw, 0.5rem);
+  --s--2-1: clamp(0.4375rem, 0.3288rem + 0.5435vw, 0.75rem);
+  --s--1-0: clamp(0.6875rem, 0.5788rem + 0.5435vw, 1rem);
+  --s-0-1: clamp(0.875rem, 0.6576rem + 1.087vw, 1.5rem);
+  --s-1-2: clamp(1.3125rem, 1.0734rem + 1.1957vw, 2rem);
+  --s-2-3: clamp(1.75rem, 1.3152rem + 2.1739vw, 3rem);
+  --s-3-4: clamp(2.625rem, 2.1467rem + 2.3913vw, 4rem);
+  --s-4-5: clamp(3.5rem, 2.6304rem + 4.3478vw, 6rem);
+
+  /* Custom pairs */
+  --s-s-l: clamp(0.875rem, 0.4837rem + 1.9565vw, 2rem);
+}
+
+
+/* Design Tokens & Axioms */
+:root {
+  --font-family-rubik: "Rubik", sans-serif;
+  --primary-color: #0ea5e9; /* sky-500 */
+  --primary-focus-ring-color: rgba(14, 165, 233, 0.5);
+  --border-thin: 1px;
+  --color-light: #fff;
+  --color-dark: #222;
+  --color-border: #ddd;
+  --measure: 60ch; /* Readability axiom */
+  --cluster-gap: var(--s-1); /* Default gap for clusters */
+  --grid-min-item-size: 20ch;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family-rubik);
+}
+
+body{
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+#root{
+  min-height: 100%;
+}
+
+/* Apply measure axiom */
+p, li, blockquote {
+    max-inline-size: var(--measure);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    max-inline-size: var(--measure);
+}
+
+h1 { font-size: var(--font-4); }
+h2 { font-size: var(--font-3); }
+h3 { font-size: var(--font-2); }
+h4 { font-size: var(--font-1); }
+p  { font-size: var(--font-0); }
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  transition: 150ms ease-in-out;
+  transition-property: color, background-color, border-color, opacity;
+}

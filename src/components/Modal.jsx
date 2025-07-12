@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import "../App.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
     // Effect to handle Escape key press for closing the modal.
@@ -19,9 +18,9 @@ const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-button" onClick={onClose}>
+    <div className="l-imposter" onClick={onClose}>
+      <div className="l-box" style={{position: 'relative'}} onClick={(e) => e.stopPropagation()}>
+        <button className="b-modal-close-button" onClick={onClose}>
           &times;
         </button>
         {children}

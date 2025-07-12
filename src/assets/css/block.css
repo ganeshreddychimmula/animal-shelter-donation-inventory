@@ -1,0 +1,101 @@
+header.b-header{
+    border-radius: 0;
+}
+
+/* --- Button Block --- */
+.b-button {
+  padding: var(--s-3) var(--s0);
+  border-radius: var(--s-3);
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 400;
+  border: var(--border-thin) solid transparent;
+  text-align: center;
+  font-size: var(--font--1);
+}
+
+.b-button:hover {
+  opacity: 0.6;
+}
+
+.b-button--secondary {
+  background-color: #6c757d; /* Gray */
+}
+
+.b-button--danger {
+    background-color: #f44336; /* Red */
+}
+
+/* --- Modal Close Button --- */
+.b-modal-close-button {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  font-size: var(--font-2);
+  line-height: 1;
+  color: #666;
+}
+
+.b-modal-close-button:hover {
+    color: #000;
+    background-color: transparent;
+}
+
+/* --- Donation Form Block (Aesthetics only) --- */
+.b-donation-form {
+    /* Layout is handled by l-stack */
+}
+
+.b-donation-form h2 {
+    margin-bottom: var(--s-1);
+    text-align: center;
+}
+
+.b-form-donation__field {
+}
+
+.b-donation-form__input {
+    --stack-space: var(--s-2);
+    padding: var(--s-4);
+    border: var(--border-thin) solid #ccc;
+    border-radius: var(--s-4);
+    font-size: var(--font-0);
+    width: 100%;;
+}
+
+.b-donation-form__input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-focus-ring-color);
+}
+
+.b-donation-form__error {
+    color: #dc3545; /* Red */
+    background-color: #f8d7da; /* Light red */
+    border: var(--border-thin) solid #f5c2c7;
+    padding: var(--s0);
+    border-radius: var(--s-2);
+}
+
+/* --- Filters Block (Aesthetics only) --- */
+.b-filters__select {
+    padding: var(--space-1);
+    border: var(--border-thin) solid #ccc;
+    border-radius: var(--s-2);
+    min-width: 150px;
+}
+
+/* --- Donation Item Block (Aesthetics only) --- */
+.b-donation-item__header h3 {
+    font-size: var(--font-1);
+}
+
+.b-donation-item__meta {
+    color: #555;
+    font-size: var(--font--1);
+}
+
+.b-donation-item__quantity {
+    font-weight: 500;
+    font-size: var(--font-1);
+}

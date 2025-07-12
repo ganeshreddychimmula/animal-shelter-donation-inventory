@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
-import "./App.css";
+import "./assets/css/global.css";
+import "./assets/css/layouts.css";
+import "./assets/css/block.css";
+import "./assets/css/utilities.css";
 import Header from "./components/Header";
 import DonationForm from "./components/DonationFom";
 import Modal from "./components/Modal";
-import { initialDonations, donationTypes } from "./data";
-
+import { initialDonations, donationTypes } from "./assets/data";
 
 function App() {
   const [donationsList, setDonationsList] = useState(initialDonations);
@@ -13,22 +15,22 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
+    setEditingDonation(null); // Ensure we're adding a new donation
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setEditingDonation(null);
   };
 
-  // Function to handle editing a donation
-  // This sets the donation to be edited in the form, allowing the user to modify it
-  // When the form is submitted, it will either update the existing donation or add a new
-  // one if no existing donation is being edited.
+  // Function to edit a donation
   const editDonation = (donation) => {
     setEditingDonation(donation);
     setIsModalOpen(true);
   };
 
+  // Function to delete a donation
   const deleteDonation = (donationId) => {
     // Filter out the donation with the given ID from the list
     setDonationsList((prevList) => prevList.filter((d) => d.id !== donationId));
@@ -64,64 +66,89 @@ function App() {
       Money: " ($)",
       Food: " (kg)",
       Clothing: " (items)",
-    } 
-    
+    };
+
+    const filteredTotal = donationsList
+      .filter((donation) => (filter ? donation.type === filter : false))
+      .reduce((total, donation) => total + donation.quantity, 0);
+
     return (
       <p>
-          Total {filter} Donations:{" "}
-          {donationsList.reduce((total, donation) => {
-            return (
-              total + (donation.type === filter ? donation.quantity : 0)
-            );
-          }, 0)}{" "}
-          {filter ? `${quantifier[filter]}` : ""}
-        </p>
-    )
+        Total {filter} Donations: {filteredTotal}
+        {filter ? `${quantifier[filter]}` : ""}
+      </p>
+    );
   }, [donationsList, filter]);
 
-  const donationLListElements = useMemo(() => {
-    return (<div className="donation-list">
-          {donationsList
-            .filter((donation) => (filter ? donation.type === filter : true))
-            .map((donation) => (
-              <div key={donation.id} className="donation-item">
-                <h3>{donation.donorName}</h3>
-                <p>Type: {donation.type}</p>
-                <p>Quantity: {donation.quantity}</p>
-                <p>Date: {new Date(donation.date).toLocaleDateString()}</p>
-                <button
-                  onClick={() => {
-                    editDonation(donation);
-                  }}
-                >
-                  Edit
-                </button>
-                <button onClick={() => deleteDonation(donation.id)}>
-                  Delete
-                </button>
-              </div>
-            ))}
-        </div>) 
+  // Memoize the donation list elements to avoid unnecessary re-renders
+  const donationListElements = useMemo(() => {
+    const filteredDonations = donationsList.filter((donation) =>
+      filter ? donation.type === filter : true
+    );
+
+    if (filteredDonations.length === 0) {
+      return (
+        <div className="l-box u-text-center">
+          <p>No donations found for this filter.</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="l-grid">
+        {filteredDonations.map((donation) => (
+          <div key={donation.id} className="l-box l-stack">
+            <div className="b-donation-item__header">
+              <h3>{donation.donorName}</h3>
+              <p className="b-donation-item__meta">
+                {donation.type} - {new Date(donation.date).toLocaleDateString()}
+              </p>
+            </div>
+            <p className="b-donation-item__quantity">
+              Quantity: {donation.quantity}
+            </p>
+            <div
+              className="l-cluster"
+              style={{ "--cluster-justify": "flex-end", marginTop: "auto" }}
+            >
+              <button
+                className="b-button b-button--secondary"
+                onClick={() => editDonation(donation)}
+              >
+                Edit
+              </button>
+              <button
+                className="b-button b-button--danger"
+                onClick={() => deleteDonation(donation.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }, [donationsList, filter]);
 
   // will use the native Form handling introduced in react 19
   return (
-    <>
+    <div className="l-stack" style={{"--stack-space": "0"}}>
       <Header />
-      <main>
+      <main className="l-stack l-center" style={{"--stack-space": "var(--space-s2)"}}>
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           <DonationForm
             onSubmit={(donation) => {
               handleSubmit(donation);
             }}
-            onClose={handleCloseModal} // Pass null to close the form without saving
-            initialData={editingDonation || null} // Pass null for a new donation, or an object to edit
+            onClose={handleCloseModal}
+            initialData={editingDonation || null}
           />
         </Modal>
-        <section className="donation-summary">
+
+        <section className="l-box l-stack">
+          <h2>Dashboard</h2>
           <p>Total Donations: {donationsList.length}</p>
           <p>
-            Total Money Donations: $
             {donationsList.reduce((total, donation) => {
               return (
                 total + (donation.type === "Money" ? donation.quantity : 0)
@@ -130,9 +157,12 @@ function App() {
           </p>
           {filter && donationSummaryElements}
         </section>
-        <section className="filter-section">
-          <label htmlFor="filter">
-            FDonation List
+
+        <section className="l-box l-cluster" style={{"--cluster-justify": "space-between"}}>
+          <div className="l-cluster"> 
+            <label htmlFor="filter">
+            Filter by Type:
+           </label>
             <select
               id="filter"
               value={filter}
@@ -146,19 +176,17 @@ function App() {
                 </option>
               ))}
             </select>
-          </label>
+          </div>
           <button
-            onClick={() => {
-              handleOpenModal();
-            }}
-            className="reset-filter-button"
+            onClick={handleOpenModal}
+            className="b-button"
           >
             Add New Donation
           </button>
         </section>
-        {donationLListElements}
+        {donationListElements}
       </main>
-    </>
+    </div>
   );
 }
 

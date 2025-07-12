@@ -1,10 +1,12 @@
-// This component renders a header with the title "Donation Inventory".
+//  Renders the main header for the application.
 import React from 'react';
 
 const Header = () => {
   return (
-    <header className="header">
-      <h2>Donation Inventory</h2>
+    <header className="l-box invert b-header">
+      <div className='l-center u-text-center'>
+        <h2>Donation Inventory</h2>
+      </div>
     </header>
   );
 }

@@ -1,0 +1,103 @@
+/*
+ * The Stack
+ * --stack-space: controls the space between elements.
+ */
+.l-stack > * + * {
+  margin-block-start: var(--stack-space, var(--s-1));
+}
+
+/*
+ * The Box
+ * Use for intrinsic spacing (padding) and decoration (border, background).
+ */
+.l-box {
+  padding: var(--box-padding, var(--s1));
+  background-color: var(--color-light, #fff);
+  border: var(--border-thin) solid var(--color-border, #ddd);
+  border-radius: var(--s-1,);
+}
+
+/* Invert variant for dark backgrounds */
+.l-box.invert {
+    background-color: var(--color-dark, #222);
+    color: var(--color-light, #fff);
+    border-color: var(--color-dark, #222);
+}
+
+/*
+ * The Center
+ * Use to center a block of content horizontally, with a max-width for readability.
+ */
+.l-center {
+  box-sizing: content-box;
+  max-inline-size: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--s-1);
+}
+
+/*
+ * The Cluster
+ * Use for grouping elements that should wrap and maintain a consistent gap.
+ * --cluster-gap: The space between elements.
+ * --cluster-justify: The horizontal alignment (e.g., flex-start, center, space-between).
+ * --cluster-align: The vertical alignment (e.g., flex-start, center).
+ */
+.l-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, var(--s1));
+  justify-content: var(--cluster-justify, flex-start);
+  align-items: var(--cluster-align, center);
+}
+
+/*
+ * The Grid
+ * A responsive grid that automatically adjusts the number of columns.
+ * --grid-gap: The space between grid items.
+ * --grid-min-item-size: The ideal minimum size for an item.
+ */
+.l-grid {
+  display: grid;
+  gap: var(--grid-gap, var(--s0));
+  /* The min() function ensures the column is never wider than 100% of its container */
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min-item-size, 18rem), 100%), 1fr));
+}
+
+/*
+ * The Cover
+ * Vertically centers a main element and can include a header and footer.
+ * --cover-min-height: The minimum height of the container.
+ * --cover-space: The padding around the container and space between elements.
+ */
+.l-cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--cover-min-height, 100vh);
+  padding: var(--cover-space, var(--s2));
+  gap: var(--cover-space, var(--s2));
+}
+
+/* The direct child designated as the main content gets auto margin to center it */
+.l-cover > .l-cover__main {
+  margin-block: auto;
+}
+
+
+/*
+ * The Imposter (for Modals)
+ * Overlays content on top of the page, centered in the viewport.
+ */
+.l-imposter {
+  position: fixed;
+  inset: 0; /* top, right, bottom, left = 0 */
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.l-imposter > .l-box {
+    max-inline-size: 90vw;
+    max-block-size: 90vh;
+    overflow: auto;
+}
