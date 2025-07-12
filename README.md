@@ -2,24 +2,6 @@
 
 A simple and elegant web application built with React to track and manage various types of donations. The app provides a clean interface for viewing, adding, editing, and deleting donation records.
 
-## Screenshots
-
-| Main Dashboard View | Add/Edit Donation Modal |
-| :---: | :---: |
-| ![Donation Inventory Dashboard](assets/ss/dashboard.jpg) | ![Add New Donation Modal](assets/ss/modal.jpg) |
-
-| Responsive Layout Handling | Filtered View |
-| :---: | :---: |
-| ![Responsive layout handling different content heights](assets/ss/layout-debug.jpg) | ![Filtered View](assets/ss/filtered-view.jpg) |
-
-| Form Validation Error | Empty State |
-| :---: | :---: |
-| ![Form with validation error](assets/ss/form-validation.jpg) | ![Empty state for filtered list](assets/ss/empty-state.jpg) |
-
-**Mobile Responsive View**
-![Mobile responsive layout](assets/ss/mobile-view.jpg)
-
-
 ## Features
 
 -   **CRUD Operations:** Full capabilities to Create, Read, Update, and Delete donation entries.
