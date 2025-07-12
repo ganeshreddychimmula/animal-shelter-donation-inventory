@@ -31,7 +31,7 @@ A simple and elegant web application built with React to track and manage variou
 ## Tech Stack
 
 -   **React:** A JavaScript library for building user interfaces.
--   **Modern CSS:** Custom CSS properties (variables), fluid typography/spacing with `clamp()`, and a logical layout system (inspired by Every Layout). No external CSS frameworks are used.
+-   **Modern CSS:** Custom CSS properties (variables), fluid typography/spacing with `clamp()`, and a logical layout system.
 
 ## Getting Started
 
@@ -77,14 +77,14 @@ The project follows a standard React application structure, with a clear separat
 
 ### CSS Methodology
 
-The project uses a powerful, custom CSS system that avoids the need for large frameworks.
+The project uses a powerful, custom CSS system that avoids the need for large frameworks by adopting modern methodologies:
 
--   **`global.css`**: This is the foundation. It defines design tokens (colors, fonts, spacing) as CSS custom properties (`--primary-color`, `--s1`, etc.) and sets global styles.
--   **`layouts.css`**: Contains reusable, low-level layout primitives like:
-    -   `.l-stack`: For creating vertical rhythm between elements.
-    -   `.l-cluster`: For grouping items that wrap, like buttons.
-    -   `.l-box`: For creating padded containers.
-    -   `.l-grid`: For responsive grid layouts.
--   **`block.css`**: Contains styles for specific, reusable components (e.g., `.b-button`, `.b-donation-form`). This is similar to the "Block" in BEM methodology.
+-   **[CUBE CSS](https://cube.fyi/):** The overall structure follows the CUBE (Composition, Utility, Block, Exception) methodology. This approach prioritizes simple, composable CSS rules over complex, monolithic components.
+    -   **`global.css`**: This is the foundation. It defines design tokens (colors, fonts, spacing) as CSS custom properties.
+    -   **`layouts.css`**: Contains reusable, low-level layout primitives (Composition).
+    -   **`utilities.css`**: Contains simple utility classes (Utility).
+    -   **`block.css`**: Contains styles for specific, reusable components (Block).
 
-This structure makes the styling highly modular, consistent, and easy to maintain.
+-   **[Utopia](https://utopia.fyi/):** All typography and spacing are fluid and responsive, generated using Utopia. This tool creates `clamp()` functions that allow font sizes and margins to scale smoothly between a minimum and maximum viewport size, eliminating the need for traditional media query breakpoints for typography.
+
+This structure makes the styling highly modular, consistent, and resilient to change.
