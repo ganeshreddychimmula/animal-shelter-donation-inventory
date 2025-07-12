@@ -49,6 +49,7 @@ main {
     position:relative;
     --box-padding:var(--s2);
 }
+
 /* --- Modal Close Button --- */
 .b-modal-close-button {
   position: absolute;
@@ -104,6 +105,11 @@ main {
     border: var(--border-thin) solid #f5c2c7;
     padding: var(--s0);
     border-radius: var(--s-2);
+}
+
+/* --- Donation Summary Block (Aesthetics only) --- */
+.b-dashboard > * {
+    flex:1;
 }
 
 /* --- Filters Block (Aesthetics only) --- */

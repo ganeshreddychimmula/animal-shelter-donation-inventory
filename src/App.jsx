@@ -73,10 +73,10 @@ function App() {
       .reduce((total, donation) => total + donation.quantity, 0);
 
     return (
-      <p>
-        Total {filter} Donations: {filteredTotal}
-        {filter ? `${quantifier[filter]}` : ""}
-      </p>
+          <div className="l-box">
+            <h4>Total {filter} Donations</h4>
+            <h3>{filteredTotal + ` ` + quantifier[filter]}</h3>
+          </div>
     );
   }, [donationsList, filter]);
 
@@ -132,7 +132,7 @@ function App() {
 
   // will use the native Form handling introduced in react 19
   return (
-    <div className="l-stack" style={{"--stack-space": "0"}}>
+    <div className="l-stack" style={{ "--stack-space": "0" }}>
       <Header />
       <main className="l-stack l-center">
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
@@ -145,24 +145,30 @@ function App() {
           />
         </Modal>
 
-        <section className="l-box l-stack">
-          <h2>Dashboard</h2>
-          <p>Total Donations: {donationsList.length}</p>
-          <p>
-            {donationsList.reduce((total, donation) => {
+        <section className="l-cluster b-dashboard"
+          style={{ "--cluster-justify": "space-evenly" }}>
+          <div className="l-box">
+            <h4>Total Donations:</h4>
+            <h3> {donationsList.length}</h3>
+          </div>
+
+          <div className="l-box">
+             <h4>Total Donations:</h4>
+              <h3> {donationsList.reduce((total, donation) => {
               return (
                 total + (donation.type === "Money" ? donation.quantity : 0)
               );
-            }, 0)}
-          </p>
+            }, 0)}</h3>
+          </div>
           {filter && donationSummaryElements}
         </section>
 
-        <section className="l-box l-cluster" style={{"--cluster-justify": "space-between"}}>
-          <div className="l-cluster"> 
-            <label htmlFor="filter">
-            Filter by Type:
-           </label>
+        <section
+          className="l-box l-cluster"
+          style={{ "--cluster-justify": "space-between" }}
+        >
+          <div className="l-cluster">
+            <label htmlFor="filter">Filter by Type:</label>
             <select
               id="filter"
               value={filter}

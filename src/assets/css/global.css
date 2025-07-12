@@ -90,6 +90,7 @@
   --grid-min-item-size: 20ch;
   --stack-space: var(--s-1); /* Default space between stack items */
   --box-padding: var(--s0);
+  --cluster-align: center; /* Default vertical alignment for clusters */
 }
 
 html, body{
@@ -114,12 +115,20 @@ p, li, blockquote {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
     max-inline-size: var(--measure);
 }
 
 h1, h2, h3 {
   color: var(--primary-text-color);
+      font-weight: 700;
+}
+
+h3{
+  font-weight:500;
+}
+
+h4, h5, h6{
+      font-weight: 400;
 }
 
 h1 { font-size: var(--font-4); }
