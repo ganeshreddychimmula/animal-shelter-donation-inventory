@@ -109,7 +109,7 @@ main {
 
 /* --- Donation Summary Block (Aesthetics only) --- */
 .b-dashboard > * {
-    flex:1;
+    flex: 1;
 }
 
 /* --- Filters Block (Aesthetics only) --- */
