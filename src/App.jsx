@@ -98,7 +98,7 @@ function App() {
       <div className="l-grid">
         {filteredDonations.map((donation) => (
           <div key={donation.id} className="l-box l-stack">
-            <div className="b-donation-item__header">
+            <div className=" l-stack b-donation-item__header">
               <h3>{donation.donorName}</h3>
               <p className="b-donation-item__meta">
                 {donation.type} - {new Date(donation.date).toLocaleDateString()}
@@ -109,7 +109,7 @@ function App() {
             </p>
             <div
               className="l-cluster"
-              style={{ "--cluster-justify": "flex-end", marginTop: "auto" }}
+              style={{ "--cluster-justify": "flex-end" }}
             >
               <button
                 className="b-button b-button--secondary"
@@ -134,7 +134,7 @@ function App() {
   return (
     <div className="l-stack" style={{"--stack-space": "0"}}>
       <Header />
-      <main className="l-stack l-center" style={{"--stack-space": "var(--space-s2)"}}>
+      <main className="l-stack l-center">
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           <DonationForm
             onSubmit={(donation) => {
@@ -179,7 +179,7 @@ function App() {
           </div>
           <button
             onClick={handleOpenModal}
-            className="b-button"
+            className="b-button b-button--primary"
           >
             Add New Donation
           </button>

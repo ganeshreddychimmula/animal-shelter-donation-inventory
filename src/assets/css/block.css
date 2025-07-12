@@ -2,12 +2,20 @@ header.b-header{
     border-radius: 0;
 }
 
+header div h2{
+    color: var(--color-light, #fff);
+}
+
+main {
+    --stack-space: var(--s0);
+}
+
 /* --- Button Block --- */
 .b-button {
   padding: var(--s-3) var(--s0);
   border-radius: var(--s-3);
   background-color: var(--primary-color);
-  color: #fff;
+  color:var(--primary-button-text-color);
   font-weight: 400;
   border: var(--border-thin) solid transparent;
   text-align: center;
@@ -15,17 +23,32 @@ header.b-header{
 }
 
 .b-button:hover {
-  opacity: 0.6;
+    opacity: 60%;
+}
+
+.b-button--primary:hover {
+  background-color: var(--color-dark);
+  opacity: 100%;
 }
 
 .b-button--secondary {
-  background-color: #6c757d; /* Gray */
+  background-color: var(--border-color); /* Gray */
+    color: var(--text-primary);
+}
+
+.b-button--secondary:hover{
+  background-color: var(--text-primary); /* Gray */
+    color: var(--border-color);
 }
 
 .b-button--danger {
-    background-color: #f44336; /* Red */
+  background-color: var(--destructive); /* red */
 }
 
+.b-modal{
+    position:relative;
+    --box-padding:var(--s2);
+}
 /* --- Modal Close Button --- */
 .b-modal-close-button {
   position: absolute;
@@ -46,31 +69,37 @@ header.b-header{
     /* Layout is handled by l-stack */
 }
 
-.b-donation-form h2 {
+.b-donation-form h3 {
     margin-bottom: var(--s-1);
     text-align: center;
 }
 
 .b-form-donation__field {
+    --stack-space: var(--s-2);
+}
+
+.b-form-donation__field label {
+    display: block;
+    font-size: var(--font--1);
 }
 
 .b-donation-form__input {
     --stack-space: var(--s-2);
-    padding: var(--s-4);
+    padding: var(--s-3);
     border: var(--border-thin) solid #ccc;
-    border-radius: var(--s-4);
-    font-size: var(--font-0);
+    border-radius: var(--s-3);
+    font-size: var(--font--1);
     width: 100%;;
 }
 
 .b-donation-form__input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 1px var(--primary-focus-ring-color);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 1px var(--secondary);
 }
 
 .b-donation-form__error {
-    color: #dc3545; /* Red */
+    color: var(--des); /* Red */
     background-color: #f8d7da; /* Light red */
     border: var(--border-thin) solid #f5c2c7;
     padding: var(--s0);
@@ -80,12 +109,20 @@ header.b-header{
 /* --- Filters Block (Aesthetics only) --- */
 .b-filters__select {
     padding: var(--space-1);
-    border: var(--border-thin) solid #ccc;
+    border: var(--border-thin) solid var(--border-color);
     border-radius: var(--s-2);
     min-width: 150px;
 }
 
+.b-filters__select:last-child {
+    border-bottom: 1px solid var(--border-color);
+}
+
 /* --- Donation Item Block (Aesthetics only) --- */
+.b-donation-item__header{
+ --stack-space: var(--s-2)
+}
+
 .b-donation-item__header h3 {
     font-size: var(--font-1);
 }

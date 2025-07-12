@@ -43,7 +43,7 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
 
   return (
     <form onSubmit={handleSubmit} className="l-stack b-donation-form">
-      <h2>{initialData ? "Edit Donation" : "Add New Donation"}</h2>
+      <h3>{initialData ? "Edit Donation" : "Add New Donation"}</h3>
       {error && <p className="b-donation-form__error">{error}</p>}
       
       <div className="l-stack b-form-donation__field">
@@ -114,7 +114,7 @@ const DonationForm = ({ onSubmit, onClose, initialData }) => {
         <button type="button" onClick={onClose} className="b-button b-button--secondary">
           Cancel
         </button>
-        <button type="submit" className="b-button">
+        <button type="submit" className="b-button b-button--primary">
           {initialData ? "Update" : "Add"} Donation
         </button>
       </div>

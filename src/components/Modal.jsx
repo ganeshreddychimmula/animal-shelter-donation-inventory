@@ -19,7 +19,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="l-imposter" onClick={onClose}>
-      <div className="l-box" style={{position: 'relative'}} onClick={(e) => e.stopPropagation()}>
+      <div className="l-box b-modal"  onClick={(e) => e.stopPropagation()}>
         <button className="b-modal-close-button" onClick={onClose}>
           &times;
         </button>
