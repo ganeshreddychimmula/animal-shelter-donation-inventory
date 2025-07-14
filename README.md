@@ -27,7 +27,7 @@ You need to have [Node.js](https://nodejs.org/) (which includes npm) installed o
 
 1.  **Clone the repository** to your local machine:
     ```sh
-    git clone [https://your-repository-url.com](https://your-repository-url.com)
+    git clone https://github.com/ganeshreddychimmula/animal-shelter-donation-inventory
     ```
 2.  **Navigate into the project directory:**
     ```sh
