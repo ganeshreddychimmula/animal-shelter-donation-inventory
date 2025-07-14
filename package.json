@@ -2,7 +2,7 @@
   "name": "donation-inventory",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://ganeshreddychimmula.github.io/animal-shelter-donation-inventory",
+  "homepage": "https://ganeshreddychimmula.github.io/animal-shelter-donation-inventory",
   "type": "module",
   "scripts": {
     "dev": "vite",
