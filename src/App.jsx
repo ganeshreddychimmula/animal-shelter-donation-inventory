@@ -6,7 +6,7 @@ import "/src/assets/css/utilities.css";
 import Header from "/src/components/Header";
 import DonationForm from "/src/components/DonationFom";
 import Modal from "/src/components/Modal";
-import { initialDonations, donationTypes } from "src/assets/data";
+import { initialDonations, donationTypes } from "/src/assets/data";
 
 function App() {
   const [donationsList, setDonationsList] = useState(initialDonations);
