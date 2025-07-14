@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
-import "./assets/css/global.css";
-import "./assets/css/layouts.css";
-import "./assets/css/block.css";
-import "./assets/css/utilities.css";
-import Header from "./components/Header";
-import DonationForm from "./components/DonationFom";
-import Modal from "./components/Modal";
-import { initialDonations, donationTypes } from "./assets/data";
+import "/src/assets/css/global.css";
+import "/src/assets/css/layouts.css";
+import "/src/assets/css/block.css";
+import "/src/assets/css/utilities.css";
+import Header from "/src/components/Header";
+import DonationForm from "/src/components/DonationFom";
+import Modal from "/src/components/Modal";
+import { initialDonations, donationTypes } from "src/assets/data";
 
 function App() {
   const [donationsList, setDonationsList] = useState(initialDonations);
