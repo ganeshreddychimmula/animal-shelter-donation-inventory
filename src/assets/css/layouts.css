@@ -11,10 +11,10 @@
  * Use for intrinsic spacing (padding) and decoration (border, background).
  */
 .l-box {
-  padding: var(--box-padding, var(--s1));
+  padding: var(--box-padding, var(--s2));
   background-color: var(--color-light, #fff);
   border: var(--border-thin) solid var(--color-border, #ddd);
-  border-radius: var(--s-1,);
+  border-radius: var(--s0,);
 }
 
 /* Invert variant for dark backgrounds */
@@ -32,7 +32,7 @@
   box-sizing: content-box;
   max-inline-size: var(--measure);
   margin-inline: auto;
-  padding-inline: var(--s-1);
+  padding-inline: var(--s0);
 }
 
 /*
@@ -45,7 +45,7 @@
 .l-cluster {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--cluster-gap, var(--s1));
+  gap: var(--cluster-gap, var(--s2));
   justify-content: var(--cluster-justify, flex-start);
   align-items: var(--cluster-align, center);
 }
@@ -58,9 +58,9 @@
  */
 .l-grid {
   display: grid;
-  gap: var(--grid-gap, var(--s0));
+  gap: var(--grid-gap, var(--s1));
   /* The min() function ensures the column is never wider than 100% of its container */
-  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min-item-size, 18rem), 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min-item-size), 100%), 1fr));
 }
 
 /*

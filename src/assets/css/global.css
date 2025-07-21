@@ -85,12 +85,13 @@
   --color-border: var(--border-color, #dbeafe);
   --border-thin: 1px;
 
-  --measure: 60ch; /* Readability axiom */
-  --cluster-gap: var(--s-1); /* Default gap for clusters */
-  --grid-min-item-size: 20ch;
-  --stack-space: var(--s-1); /* Default space between stack items */
-  --box-padding: var(--s0);
+  --measure: 120ch; /* Readability axiom */
+  --cluster-gap: var(--s0); /* Default gap for clusters */
+  --grid-min-item-size: 30ch;
+  --stack-space: var(--s1); /* Default space between stack items */
+  --box-padding: var(--s1);
   --cluster-align: center; /* Default vertical alignment for clusters */
+  --grid-gap: var(--s2);
 }
 
 html, body{

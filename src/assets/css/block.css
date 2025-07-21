@@ -7,19 +7,19 @@ header div h2{
 }
 
 main {
-    --stack-space: var(--s0);
+    --stack-space: var(--s1);
 }
 
 /* --- Button Block --- */
 .b-button {
-  padding: var(--s-3) var(--s0);
-  border-radius: var(--s-3);
+  padding: var(--s-2) var(--s1);
+  border-radius: var(--s-2);
   background-color: var(--primary-color);
   color:var(--primary-button-text-color);
   font-weight: 400;
   border: var(--border-thin) solid transparent;
   text-align: center;
-  font-size: var(--font--1);
+  font-size: var(--font-0);
 }
 
 .b-button:hover {
@@ -47,15 +47,15 @@ main {
 
 .b-modal{
     position:relative;
-    --box-padding:var(--s2);
+    --box-padding:var(--s4);
 }
 
 /* --- Modal Close Button --- */
 .b-modal-close-button {
   position: absolute;
-  top: var(--s-2);
-  right: var(--s-2);
-  font-size: var(--font-2);
+  top: var(--s-1);
+  right: var(--s-1);
+  font-size: var(--font-3);
   line-height: 1;
   color: #666;
 }
@@ -71,25 +71,25 @@ main {
 }
 
 .b-donation-form h3 {
-    margin-bottom: var(--s-1);
+    margin-bottom: var(--s0);
     text-align: center;
 }
 
 .b-form-donation__field {
-    --stack-space: var(--s-2);
+    --stack-space: var(--s-1);
 }
 
 .b-form-donation__field label {
     display: block;
-    font-size: var(--font--1);
+    font-size: var(--font-0);
 }
 
 .b-donation-form__input {
-    --stack-space: var(--s-2);
-    padding: var(--s-3);
+    --stack-space: var(--s-1);
+    padding: var(--s-2);
     border: var(--border-thin) solid #ccc;
-    border-radius: var(--s-3);
-    font-size: var(--font--1);
+    border-radius: var(--s-2);
+    font-size: var(--font-0);
     width: 100%;;
 }
 
@@ -103,8 +103,8 @@ main {
     color: var(--des); /* Red */
     background-color: #f8d7da; /* Light red */
     border: var(--border-thin) solid #f5c2c7;
-    padding: var(--s0);
-    border-radius: var(--s-2);
+    padding: var(--s1);
+    border-radius: var(--s-1);
 }
 
 /* --- Donation Summary Block (Aesthetics only) --- */
@@ -114,9 +114,9 @@ main {
 
 /* --- Filters Block (Aesthetics only) --- */
 .b-filters__select {
-    padding: var(--space-1);
+    padding: var(--s0);
     border: var(--border-thin) solid var(--border-color);
-    border-radius: var(--s-2);
+    border-radius: var(--s-1);
     min-width: 150px;
 }
 
@@ -126,19 +126,19 @@ main {
 
 /* --- Donation Item Block (Aesthetics only) --- */
 .b-donation-item__header{
- --stack-space: var(--s-2)
+ --stack-space: var(--s-1)
 }
 
 .b-donation-item__header h3 {
-    font-size: var(--font-1);
+    font-size: var(--font-2);
 }
 
 .b-donation-item__meta {
     color: #555;
-    font-size: var(--font--1);
+    font-size: var(--font-0);
 }
 
 .b-donation-item__quantity {
     font-weight: 500;
-    font-size: var(--font-1);
+    font-size: var(--font-2);
 }
