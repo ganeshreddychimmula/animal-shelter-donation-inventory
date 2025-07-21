@@ -7,6 +7,8 @@ import Header from "/src/components/Header";
 import DonationForm from "/src/components/DonationFom";
 import Modal from "/src/components/Modal";
 import { initialDonations, donationTypes } from "/src/assets/data";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function App() {
   const [donationsList, setDonationsList] = useState(initialDonations);
@@ -52,15 +54,14 @@ function App() {
       // If adding a new donation, generate a new ID and add it to the list
       const newDonation = {
         ...donation,
-        id: (
-          Math.max(...donationsList.map((d) => parseInt(d.id))) + 1
-        ).toString(), // Generate a new ID
+        id: uuidv4(), // Generate a new ID
       };
       setDonationsList((prevList) => [...prevList, newDonation]);
     }
     handleCloseModal(); // Close the modal after submission
   };
 
+  // Memoize the donation summary elements to avoid unnecessary re-renders
   const donationSummaryElements = useMemo(() => {
     const quantifier = {
       Money: " ($)",
